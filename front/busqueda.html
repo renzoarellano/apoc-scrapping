@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Buscar Ofertas</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <style>
+      body {
+        margin: 0;
+        background-color: #f0f2f5;
+      }
+      .container {
+        background-color: white;
+        padding: 32px;
+        border-radius: 8px;
+        box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 20%),
+          0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%);
+        max-width: 600px;
+        margin: 32px auto;
+      }
+      h1 {
+        color: #3f51b5;
+        text-align: center;
+        margin-bottom: 24px;
+        font-weight: 400;
+      }
+      .form-group {
+        margin-bottom: 24px;
+      }
+      label {
+        display: block;
+        margin-bottom: 8px;
+        color: #555;
+      }
+      input[type="text"] {
+        width: calc(100% - 16px);
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        font-size: 16px;
+      }
+      button {
+        background-color: #3f51b5;
+        color: white;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+      }
+      button:hover {
+        background-color: #1a237e;
+      }
+      #resultados {
+        margin-top: 32px;
+        padding: 20px;
+        border: 1px solid #e0e0e0;
+        border-radius: 4px;
+        background-color: #f9f9f9;
+        display: none; /* Inicialmente oculto */
+      }
+      #resultados h2 {
+        color: #3f51b5;
+        margin-top: 0;
+        margin-bottom: 16px;
+        font-weight: 400;
+      }
+      .oferta {
+        border-bottom: 1px solid #e0e0e0;
+        padding-bottom: 16px;
+        margin-bottom: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .oferta:last-child {
+        border-bottom: none;
+      }
+      .oferta h3 {
+        color: #283593;
+        margin-top: 0;
+        margin-bottom: 8px;
+        font-weight: 500;
+      }
+      .oferta p {
+        color: #555;
+        margin-bottom: 8px;
+      }
+      .estado {
+        font-weight: bold;
+        color: #ff9800;
+        margin-right: 16px;
+      }
+      .estado.finalizado {
+        color: #4caf50;
+      }
+      .actualizar-estado {
+        background-color: #4caf50;
+        color: white;
+        padding: 8px 16px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: background-color 0.3s ease;
+      }
+      .actualizar-estado:hover {
+        background-color: #388e3c;
+      }
+      .actualizar-estado:disabled {
+        background-color: #bdbdbd;
+        cursor: not-allowed;
+      }
+      #dni_buscado {
+        font-weight: bold;
+        color: #3f51b5;
+      }
+    </style>
+  </head>
+  <body>
+    <div className="container">
+      <h1>Buscar Ofertas por DNI</h1>
+      <form id="busquedaDNI">
+        <div className="form-group">
+          <label htmlFor="dni">DNI (8 dígitos):</label>
+          <input type="text" id="dni" name="dni" pattern="[0-9]{8}" required />
+        </div>
+        <button type="submit">Buscar Ofertas</button>
+      </form>
+      <div id="resultados" style="display: none">
+        <h2>Ofertas Activas para el DNI <span id="dni_buscado"></span></h2>
+        <div class="oferta">
+          <div>
+            <h3>Oferta Única</h3>
+            <p>Estado: <span class="estado">Pendiente</span></p>
+          </div>
+          <button class="actualizar-estado">Actualizar Estado</button>
+        </div>
+      </div>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        document.getElementById("resultados").style.display = "none"; // Ocultar al cargar
+      });
+
+      document
+        .getElementById("busquedaDNI")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          const dni = document.getElementById("dni").value;
+          document.getElementById("dni_buscado").textContent = dni;
+          document.getElementById("resultados").style.display = "block"; // Mostrar al buscar
+        });
+
+      document.addEventListener("click", function (event) {
+        if (event.target.classList.contains("actualizar-estado")) {
+          const estadoSpan = event.target.parentNode.querySelector(".estado");
+          console.log("🚀 ~ estadoSpan:", estadoSpan);
+          estadoSpan.textContent = "Finalizado";
+          estadoSpan.classList.add("finalizado");
+          event.target.disabled = true;
+        }
+      });
+    </script>
+  </body>
+</html>

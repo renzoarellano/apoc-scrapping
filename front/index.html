@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="root">
+      <div
+        style="
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          min-height: 100vh;
+          background-color: #f0f2f5;
+        "
+      >
+        <div
+          style="
+            background-color: white;
+            padding: 32px;
+            border-radius: 8px;
+            box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 20%),
+              0px 4px 5px 0px rgb(0 0 0 / 14%),
+              0px 1px 10px 0px rgb(0 0 0 / 12%);
+            width: 400px;
+          "
+        >
+          <h2 style="text-align: center; color: #3f51b5; margin-bottom: 24px">
+            Iniciar Sesión
+          </h2>
+          <form id="loginForm" action="menu.html">
+            <div style="margin-bottom: 16px">
+              <label
+                htmlFor="usuario"
+                style="display: block; margin-bottom: 8px; color: #555"
+                >Usuario:</label
+              >
+              <input
+                type="text"
+                id="usuario"
+                name="usuario"
+                value="usuario_prueba"
+                style="
+                  width: calc(100% - 16px);
+                  padding: 10px;
+                  border: 1px solid #ccc;
+                  border-radius: 4px;
+                  box-sizing: border-box;
+                "
+                required
+              />
+            </div>
+            <div style="margin-bottom: 24px">
+              <label
+                htmlFor="contrasena"
+                style="display: block; margin-bottom: 8px; color: #555"
+                >Contraseña:</label
+              >
+              <input
+                type="password"
+                id="contrasena"
+                name="contrasena"
+                value="clave123"
+                style="
+                  width: calc(100% - 16px);
+                  padding: 10px;
+                  border: 1px solid #ccc;
+                  border-radius: 4px;
+                  box-sizing: border-box;
+                "
+                required
+              />
+            </div>
+            <button
+              type="submit"
+              style="
+                background-color: #3f51b5;
+                color: white;
+                padding: 12px 24px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 16px;
+                width: 100%;
+              "
+            >
+              Ingresar
+            </button>
+            <div
+              id="loginError"
+              className="error-message"
+              style="color: #f44336; margin-top: 16px; display: none"
+            >
+              Credenciales incorrectas.
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
